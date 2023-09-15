@@ -1,0 +1,18 @@
+:root {
+  --size-pen: 50px;
+}
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+canvas {
+  background-color: white;
+  display: block;
+}
+
+#pen-icon {
+  position: absolute;
+  width: var(--size-pen);
+  height: var(--size-pen);
+}
