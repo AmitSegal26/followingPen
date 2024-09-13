@@ -4,11 +4,17 @@
 body {
   margin: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: url("./assets/cursorPen.cur"), auto;
 }
 
 canvas {
   background-color: white;
   display: block;
+  border: 1px solid black;
 }
 
 #pen-icon {

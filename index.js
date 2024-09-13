@@ -1,25 +1,36 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-
+let initialColorValue = "000";
 let painting = false;
-
-console.log("here");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+const convertToHexadecimal = (num) => {
+  let stringedNum = num.toString("16");
+  return stringedNum.length === 3
+    ? `#000${stringedNum}`
+    : stringedNum.length === 4
+    ? `#00${stringedNum}`
+    : stringedNum.length === 5
+    ? `#0${stringedNum}`
+    : `#${stringedNum}`;
+};
+const convertBackToDecimal = (hexNum) => parseInt(hexNum.replace("#", ""), 16);
+const changeColorValue = () => convertBackToDecimal(ctx.strokeStyle) + 1000;
+
 ctx.lineWidth = 5;
 ctx.lineJoin = "round";
 ctx.lineCap = "round";
-ctx.strokeStyle = "black";
+ctx.strokeStyle = convertToHexadecimal(initialColorValue);
 
 const draw = (e) => {
   if (!painting) return;
 
-  ctx.lineTo(e.clientX, e.clientY);
+  ctx.lineTo(e.clientX, e.clientY - 80);
   ctx.stroke();
   ctx.beginPath();
-  ctx.moveTo(e.clientX, e.clientY);
+  ctx.moveTo(e.clientX, e.clientY - 80);
 };
 const startPosition = (e) => {
   painting = true;
@@ -28,6 +39,8 @@ const startPosition = (e) => {
 const endPosition = () => {
   painting = false;
   ctx.beginPath();
+  //! change color here (ADD FUNCTION)
+  ctx.strokeStyle = convertToHexadecimal(changeColorValue());
 };
 canvas.addEventListener("mousedown", startPosition);
 canvas.addEventListener("mouseup", endPosition);
