@@ -16,7 +16,14 @@ canvas {
   display: block;
   border: 1px solid black;
 }
-
+#clean-btn {
+  border-radius: 5px;
+  background-color: red;
+  border: 3px solid crimson;
+}
+#clean-btn:hover {
+  background-color: #fff;
+}
 #pen-icon {
   position: absolute;
   width: var(--size-pen);

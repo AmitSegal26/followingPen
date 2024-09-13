@@ -1,5 +1,9 @@
 const canvas = document.getElementById("canvas");
+const clearBtn = document.getElementById("clean-btn");
 const ctx = canvas.getContext("2d");
+clearBtn.addEventListener("click", () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
 let initialColorValue = "000";
 let painting = false;
 
