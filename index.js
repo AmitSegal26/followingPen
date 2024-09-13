@@ -31,10 +31,10 @@ ctx.strokeStyle = convertToHexadecimal(initialColorValue);
 const draw = (e) => {
   if (!painting) return;
 
-  ctx.lineTo(e.clientX, e.clientY - 80);
+  ctx.lineTo(e.clientX, e.clientY - 100);
   ctx.stroke();
   ctx.beginPath();
-  ctx.moveTo(e.clientX, e.clientY - 80);
+  ctx.moveTo(e.clientX, e.clientY - 100);
 };
 const startPosition = (e) => {
   painting = true;
