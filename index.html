@@ -4,10 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./index.css" />
+    <link rel="icon" href="./assets/penIcon.png" />
     <title>Drawing Board</title>
   </head>
   <body>
-    <h1 id="title">Enjoy Drawing!</h1>
+    <header>
+      <div id="title-container">
+        <h1 id="title">Current Color:</h1>
+        <div id="preview"></div>
+      </div>
+      <div id="color-bar" />
+    </header>
     <button id="clean-btn">CLEAN THE CANVAS</button>
     <canvas id="canvas" />
     <script src="./index.js"></script>
