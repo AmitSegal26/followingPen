@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./index.css" />
@@ -8,15 +14,56 @@
     <title>Drawing Board</title>
   </head>
   <body>
-    <header>
-      <div id="title-container">
-        <h1 id="title">Current Color:</h1>
+    <header>Drawing Board By Amit</header>
+    <main>
+      <div id="current-color-container">
+        <h1 id="current-color">Current Color:</h1>
         <div id="preview"></div>
       </div>
-      <div id="color-bar" />
-    </header>
-    <button id="clean-btn">CLEAN THE CANVAS</button>
-    <canvas id="canvas" />
+      <div id="tools-container">
+        <div id="color-bar"></div>
+        <button id="clean-btn">
+          <h6>CLEAN THE CANVAS</h6>
+          <img src="./assets/eraser.png" />
+        </button>
+      </div>
+      <div id="canvas-container" style="border: 3px solid purple">
+        <canvas id="canvas" />
+      </div>
+      <button id="print-btn">Print your drawing</button>
+    </main>
+    <footer>
+      <div id="footer-icons-container">
+        <img
+          class="footer-icons"
+          id="author"
+          src="./assets/me-improv-cut.jpg"
+        />
+
+        <a href="mailto:amitseg2612@gmail.com" target="_blank">
+          <img class="footer-icons" src="./assets/email.png" alt=""
+        /></a>
+        <a href="https://github.com/AmitSegal26" target="_blank">
+          <img class="footer-icons" src="./assets/github.png" alt=""
+        /></a>
+        <a href="tel:+972526889067" target="_blank">
+          <img class="footer-icons" src="./assets/phone.png" alt=""
+        /></a>
+        <a
+          href="https://wa.me/972526889067/?text=Hello%20Amit,%20I%27m%20contacting%20you%20from%20your%20Drawing%20app!"
+          target="_blank"
+          ><img class="footer-icons" src="./assets/whatsapp.png" alt=""
+        /></a>
+      </div>
+      <h5>
+        The eraser icon from the website:
+        <a
+          href="https://www.flaticon.com/free-icons/eraser"
+          title="eraser icons"
+          >Eraser icons created by Iconjam - Flaticon</a
+        >
+      </h5>
+    </footer>
     <script src="./index.js"></script>
   </body>
 </html>

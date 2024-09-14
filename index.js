@@ -2,25 +2,91 @@ const canvas = document.getElementById("canvas");
 const clearBtn = document.getElementById("clean-btn");
 const ctx = canvas.getContext("2d");
 const colorBar = document.getElementById("color-bar");
+const printBtn = document.getElementById("print-btn");
 
-clearBtn.addEventListener("click", () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+window.addEventListener("load", () => {
+  if (window.innerWidth < 1200) {
+    alert("The app is available on PC only!");
+  }
+});
+// print the canvas
+printBtn.addEventListener("click", () => {
+  let dataURL = canvas.toDataURL();
+  let windowContent = "<!DOCTYPE html>";
+  windowContent += "<html>";
+  windowContent += "<head><title>Your Drawing 😁</title></head>";
+  windowContent += `
+  <style>
+    @media print {
+      @page {
+        size: landscape;
+        color: auto;
+        margin: 0; /* Remove default margins */
+      }
+      body, html {
+        height: 100%;
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        margin: 0; /* Remove default margins */
+        padding: 0;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      img {
+        max-width: 98vw; /* Larger image: 98% of viewport width */
+        max-height: 98vh; /* Larger image: 98% of viewport height */
+        object-fit: contain; /* Maintain aspect ratio */
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+`;
+  windowContent += "<body>";
+  windowContent += '<img src="' + dataURL + '">';
+  windowContent += "</body>";
+  windowContent += "</html>";
+  let printWin = window.open(
+    "",
+    "",
+    `width=${screen.width},height=${screen.height}, fullscreen=yes`
+  );
+  printWin.document.open();
+  printWin.document.write(windowContent);
+  printWin.document.close();
+  printWin.focus();
+  printWin.print();
+  printWin.close();
 });
 let initialColorValue = "000";
 let painting = false;
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
 const convertToHexadecimal = (num) => {
   let stringedNum = num.toString("16");
   return `#${stringedNum.padStart(6, "0")}`;
 };
-const convertBackToDecimal = (hexNum) => parseInt(hexNum.replace("#", ""), 16);
-const changeColorValue = () => convertBackToDecimal(ctx.strokeStyle) + 1000;
+
+clearBtn.addEventListener("click", () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
+
+canvas.height = parseInt(
+  window.getComputedStyle(document.getElementById("canvas-container")).height,
+  10
+);
+canvas.width = parseInt(
+  window.getComputedStyle(document.getElementById("canvas-container")).width,
+  10
+);
+
 ctx.lineWidth = 5;
-ctx.lineJoin = "round";
-ctx.lineCap = "round";
+const lineJoinCapArr = ["round", "bevel", "miter"];
+const chosenLineJoinCap = lineJoinCapArr[0];
+ctx.lineJoin = chosenLineJoinCap;
+ctx.lineCap = chosenLineJoinCap;
 ctx.strokeStyle = convertToHexadecimal(initialColorValue);
 
 for (let i = 0; i < 360; i++) {
@@ -48,10 +114,11 @@ for (let i = 0; i < 360; i++) {
 const draw = (e) => {
   if (!painting) return;
 
-  ctx.lineTo(e.clientX, e.clientY - 100);
+  const remainderOfY = 290;
+  ctx.lineTo(e.clientX, e.clientY - remainderOfY);
   ctx.stroke();
   ctx.beginPath();
-  ctx.moveTo(e.clientX, e.clientY - 100);
+  ctx.moveTo(e.clientX, e.clientY - remainderOfY);
 };
 const startPosition = (e) => {
   painting = true;

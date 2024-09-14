@@ -1,45 +1,106 @@
 :root {
-  --size-pen: 50px;
+  --height_of_main_element: 80vh;
+  font-family: "Roboto", sans-serif;
+  background: #bbbbbb5f;
 }
-body {
+* {
   margin: 0;
-  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  cursor: url("./assets/cursorPen.cur"), auto;
-}
-
-canvas {
-  background-color: white;
-  display: block;
-  border: 1px solid black;
 }
 header {
+  height: calc((100vh - var(--height_of_main_element)) / 2);
   width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-#clean-btn {
-  border-radius: 5px;
-  background-color: red;
-  border: 3px solid crimson;
+main {
+  border: 1px solid black;
+  height: var(--height_of_main_element);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 0px 10px 0px;
+}
+footer > h5 {
+  margin: 40px;
+}
+footer {
+  padding: 20px;
+  /* color: #fff; */
+  width: 100vw;
+  background-color: #bbbbbb;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#footer-icons-container {
+  display: flex;
+  justify-content: start;
+  width: 100vw;
+  margin: 20px;
+}
+canvas {
+  display: block;
+}
+#clean-btn,
+#print-btn {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  border-radius: 10px;
+  font-weight: bold;
+  height: 40px;
+  width: 160px;
+  letter-spacing: 0.1em;
+  background-color: #a4a4a4;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
 }
 #clean-btn:hover {
   background-color: #fff;
 }
-#title-container {
+#current-color-container {
+  border: 3px solid red;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 15%;
   width: 100%;
+}
+#tools-container {
+  border: 3px solid greenyellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 15%;
+  width: 100%;
+}
+#canvas-container {
+  width: 100%;
+  height: 70%;
+  cursor: url("./assets/cursorPen.cur"), auto;
 }
 #preview {
   margin-left: 10px;
-  border-radius: 50px;
+  border-radius: 10px;
   width: 50px;
   height: 50px;
   background-color: black;
@@ -58,8 +119,23 @@ header {
   transform: scale(1.3);
   border: 3px solid black;
 }
-#pen-icon {
-  position: absolute;
-  width: var(--size-pen);
-  height: var(--size-pen);
+.footer-icons:hover {
+  transform: scale(1.2);
+}
+.footer-icons {
+  margin: 20px;
+  height: 60px;
+  transition: all 0.25s ease-in-out;
+  border-radius: 50px;
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px 0px black;
+}
+img {
+  height: 70%;
+}
+@media (max-width: 1200px) {
+  * {
+    display: none;
+  }
 }
