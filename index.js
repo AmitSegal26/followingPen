@@ -6,7 +6,14 @@ const printBtn = document.getElementById("print-btn");
 
 window.addEventListener("load", () => {
   if (window.innerWidth < 1200) {
-    alert("The app is available on PC only!");
+    if (
+      window.confirm(
+        "The app is available on PC only! \nYou can use the mobile version by clicking 'ok'"
+      )
+    ) {
+      window.location.href =
+        "https://amitsegal26.github.io/following-pen-mobile/";
+    }
   }
 });
 // print the canvas
